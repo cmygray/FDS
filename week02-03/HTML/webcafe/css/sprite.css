@@ -1,0 +1,20 @@
+@charset "utf-8";
+.btn-area {
+  background: coral;
+}
+
+.btn-prev,
+.btn-next {
+  /* span의 인라인속성 없애기 */
+  display: inline-block;
+  width: 20px;
+  height: 0px;
+  padding-top: 20px;
+  overflow: hidden;
+  background: yellowgreen url("./images/backpage_forwardpage.png") no-repeat;
+  cursor: pointer;
+}
+
+.btn-next {
+  background-position: -40px 0;
+}

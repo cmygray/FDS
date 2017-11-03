@@ -1,0 +1,59 @@
+@charset "utf-8";
+div,
+h2,
+button {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+.container {
+  position: relative;
+  display: block;
+}
+
+.logo-label {
+  font-size: 0.8rem;
+  display: block;
+  width: 350px;
+  height: 350px;
+  padding: 50px;
+}
+
+.logo-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: url("./img/sprite.png") no-repeat;
+  background-position: -18px 0;
+  width: 350px;
+  height: 350px;
+}
+
+.btn-box {
+  display: inline-block;
+  height: 18px;
+  margin: 5px 0 0 5px;
+}
+
+.btn-prev,
+.btn-next {
+  width: 18px;
+  height: 18px;
+  background: url("./img/sprite.png");
+  padding: 18px 0 0 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-next {
+  background-position: 0 -18px;
+  margin-left: 3px;
+}

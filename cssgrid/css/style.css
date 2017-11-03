@@ -1,0 +1,53 @@
+.col {
+  min-height: 100px;
+  background-color: steelblue; }
+
+.col:nth-child(odd) {
+  background-color: skyblue; }
+
+.container::after {
+  content: "";
+  display: block;
+  clear: both; }
+
+.grid {
+  position: relative;
+  width: 600px;
+  margin: 0 auto; }
+  .grid::after {
+    content: "";
+    display: block;
+    clear: both; }
+
+.row {
+  background-color: gray;
+  position: relative;
+  width: 100%; }
+  .row::after {
+    content: "";
+    display: block;
+    clear: both; }
+
+.col {
+  box-sizing: border-box;
+  float: left;
+  margin-left: 4.8px;
+  margin-right: 4.8px; }
+
+.alpha {
+  margin-left: 0; }
+
+.omega {
+  margin-right: 0; }
+
+.col-1 {
+  width: 142.8px; }
+
+.col-2 {
+  width: 295.2px; }
+
+.col-3 {
+  width: 447.6px; }
+
+.col-4 {
+  width: 600px; }

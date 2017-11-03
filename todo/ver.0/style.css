@@ -1,0 +1,12 @@
+div {
+  margin: 0 auto;
+  width: 70%;
+}
+
+input,
+ul,
+li {
+  width: 100%;
+  list-style: none;
+  cursor: pointer;
+}

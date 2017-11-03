@@ -1,0 +1,10 @@
+.col {
+  min-height: 100px;
+  background-color: steelblue;
+  // border: 2px solid gray;
+}
+
+.col:nth-child(odd) {
+  background-color: skyblue
+  // border: 2px dotted red;
+}

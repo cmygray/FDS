@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>웹카페-HTML5, CSS3, 웹표준, 웹접근성</title>
+  <link rel="shortcut icon" href="images/common/webcafe.ico">
+  <!--launcher icon-->
+  <link rel="apple-touch-icon" href="images/common/webcafe.png">
+  <!-- external style sheet-->
+  <!-- <link rel="stylesheet" href="css/float.css"> -->
+  <link rel="stylesheet" href="css/stylesheet.css">
+</head>
+
+<body>
+  <div class="skip-nav">
+    <a href="#user-email" class="a11y">로그인 창 바로가기</a>
+    <a href="#main-content" class="a11y">본문 바로가기</a>
+  </div>
+
+  <div class="wrapper">
+    <header class="header">
+      <h1 class="logo" alt="web cafe" title="웹카페">
+        <a href="#">
+          <img src="images/logo.png" alt="web cafe">
+        </a>
+      </h1>
+      <ul class="info-menu">
+        <li><a href="#">홈</a></li>
+        <li><a href="#">로그인</a></li>
+        <li><a href="#">회원가입</a></li>
+        <li><a href="#">사이트맵</a></li>
+        <li><a href="#">english</a></li>
+      </ul>
+      <nav class="navigation">
+        <h2 class="readable-hidden">메인 메뉴</h2>
+        <ul class="main-menu">
+          <li>
+            <span tabindex="0">HTML에 대해</span>
+            <ul class="sub-menu about-html">
+              <li><a href="#">HTML5 소개</a></li>
+              <li><a href="#">레퍼런스 소개</a></li>
+              <li><a href="#">활용예제</a></li>
+            </ul>
+          </li>
+          <li>
+            <span tabindex="0">CSS에 대해</span>
+            <ul class="sub-menu about-css">
+              <li><a href="#">CSS 소개</a></li>
+              <li><a href="#">CSS2 VS CSS3</a></li>
+              <li><a href="#">CSS 애니메이션</a></li>
+              <li><a href="#">CSS Freamwork</a></li>
+            </ul>
+          </li>
+          <li>
+            <span tabindex="0">웹표준</span>
+            <ul class="sub-menu web-standards">
+              <li><a href="#">웹표준이란?</a></li>
+              <li><a href="#">W3C</a></li>
+              <li><a href="#">HTML5의 현재와 미래</a></li>
+            </ul>
+          </li>
+          <li>
+            <span tabindex="0">웹 접근성</span>
+            <ul class="sub-menu web-accessibility">
+              <li><a href="#">웹 접근성의 개요</a></li>
+              <li><a href="#">장애 환경의 이해</a></li>
+              <li><a href="#">장차법</a></li>
+              <li><a href="#">웹 접근성 품질마크</a></li>
+            </ul>
+          </li>
+          <li>
+            <span tabindex="0">묻고 답하기</span>
+            <ul class="sub-menu qna">
+              <li><a href="#">묻고 답하기</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">1대1 질문</a></li>
+              <li><a href="#">웹표준</a></li>
+              <li><a href="#">웹접근성</a></li>
+            </ul>
+          </li>
+          <li>
+            <span tabindex="0">자료실</span>
+            <ul class="sub-menu archive">
+              <li><a href="#">공개 자료실</a></li>
+              <li><a href="#">이미지 자료실</a></li>
+              <li><a href="#">웹 표준 자료실</a></li>
+              <li><a href="#">웹 접근성 자료실</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="visual">
+      <div class="visual-text">
+        Web Standards &amp; Accessibility
+      </div>
+    </div>
+    <main class="main-content" id="main-content">
+      <!--group$*3-->
+      <div class="group group1">
+        <div class="login">
+          <!-- div를 만들면 헤딩을 달아줘버릇 -->
+          <h2 class="login-heading">로그인</h2>
+          <form action="javascript:alert('반갑습니다.');" class="login-form">
+            <fieldset>
+              <legend>회원 로그인 폼</legend>
+              <div class="user-email">
+                <!-- # of input == . of div -->
+                <!-- label accessibility -->
+                <label for="user-email">아이디</label><input type="email" id="user-email" placeholder="이메일만" required>
+              </div>
+              <div class="user-pw">
+                <label for="user-pw">비밀번호</label><input type="password" id="user-pw" placeholder="8자리 이상" required>
+              </div>
+              <button type="submit" class="btn-login">로그인</button>
+            </fieldset>
+          </form>
+          <ul class="member">
+            <li><a href="#">회원가입</a></li>
+            <li><a href="#">아이디/비밀번호 찾기</a></li>
+          </ul>
+        </div>
+        <div class="validation">
+          <h2 class="readable-hidden">"유효성 검사 배너 링크"</h2>
+          <ul class="validation-list">
+            <li>
+              <a href="https://validator.w3.org/" target="_blank" title="마크업 유효성 검사 사이트로 이동(새창)">W3C Markup Validation</a>
+            </li>
+            <li>
+              <a href="https://jigsaw.w3.org/css-validator/" target="_blank" title="CSS 유효성 검사 사이트로 이동(새창)">W3C CSS Validation Service</a>
+            </li>
+          </ul>
+        </div>
+        <div class="term">
+          <h2 class="term-heading">웹 관련 용어</h2>
+          <dl class="term-list">
+            <dt class="term-list-heading">웹 표준 이란?</dt>
+            <dd class="term-list-thumbnail">
+              <img src="./images/web_standards.gif" alt="W3C 로고">
+            </dd>
+            <dd class="term-list-brief">W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준 규격은...</dd>
+          </dl>
+        </div>
+        <!-- <div class="term">
+          <h2>웹 관련 용어</h2>
+          <div class="term-text">
+            <h3>웹표준 이란&quest;</h3>
+            <p>W3C 단체에서 규정한 웹 기술 사양에 대한 규칙을 말하며 표준 규격은...</p>
+            <div class="term-thumbnail"></div>
+          </div>
+        </div> -->
+      </div>
+      <div class="group group2">
+        <div class="search">
+          <h2 class="search-heading">자료검색</h2>
+          <form action="javascript:alert('검색완료.');" class="search-form">
+            <fieldset>
+              <div class="search-flex">
+                <legend>검색어를 입력하는 폼</legend>
+                <label for="keyword">자료검색</label><input class="search-form-input" type="text" id="keyword" placeholder="검색어를 입력하세요." required>
+                <button class="search-form-btn">검색</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        <div class="board">
+          <div class="notice board-active">
+            <h2 class="notice-heading" tabindex="0">공지사항</h2>
+            <ul class="notice-list">
+              <li>
+                <a href="#">HTML의 모든것을 알려주마 샘플 활용법</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">W3C 사이트 리뉴얼 및 공지사항</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">KWCAG2.1 소식</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">서버 점검으로 인한 사이트 이용안내 입니다.</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#" textover>여러분들이 생각하는 웹 접근성에 대해 이야기를 나누어봅시다.</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+            </ul>
+            <a href="#" class="notice-more icon-more" title="공지사항" target="_blank">더보기</a>
+          </div>
+          <div class="pds">
+            <h2 class="pds-heading" tabindex="0">자료실</h2>
+            <ul class="pds-list">
+              <li>
+                <a href="#">디자인 사이트 링크 모음</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">웹 접근성 관련 자료 모음</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">예제 샘플 을용해보기</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">웹 접근성 향상을 위한 국가 표준 기술 가이드라인</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+              <li>
+                <a href="#">로얄티 프리 이미지 자료</a>
+                <time datetime="2017-09-18T11:21:30">2017.09.18</time>
+              </li>
+            </ul>
+            <a href="#" class="pds-more icon-more" title="자료실" target="_blank">더보기</a>
+          </div>
+        </div>
+        <div class="news">
+          <h2 class="news-heading">새소식</h2>
+          <article class="news-item">
+            <a href="#">
+              <h3 class="news-item-heading">W3C 사이트가 리뉴얼 되었습니다.</h3>
+              <time class="news-item-date" datetime="2017-09-19">2017.09.19</time>
+              <p class="news-item-brief">디자인 및 다양한 view 환경을 고려하여 구성되어 있으며, 기존보다 최신 정보 및 개발자를 위한 기술 가이드도 찾기 쉽도록 구성되어 있습니다.</p>
+              <figure class="news-item-thumbnail">
+                <img src="./images/news.gif" alt="HTML5를 발표하면서 새롭게 리뉴얼 된 W3C 공식 웹사이트">
+                <figcaption>W3C 리뉴얼</figcaption>
+              </figure>
+            </a>
+          </article>
+          <a class="news-more icon-more" href="#" title="새소식" target="_blank">더보기
+          </a>
+
+          <!-- 내가 만든 마크업 -->
+          <!-- <h2 class="news-heading">새소식</h2>
+          <div class="news-container">
+            <h3 class="news-title">W3C 사이트가 리뉴얼 되었습니다.</h3>
+            <time datetime="2017-09-18T15:31:30">2017.09.18</time>
+            <p class="news-summary">디자인 및 다양한 view 환경을 고려하여 구성되어 있으며, 기존보다 최신 정보 및 개발자를 위한 기술 가이드도 찾기 쉽도록 구성되어 있습니다.</p>
+            <a class="news-more" href="#">더보기</a>
+            <figure>
+              <img src="./images/news.gif" alt="W3C 메인화면">
+              <figcaption>W3C 리뉴얼</figcaption>
+            </figure>
+          </div> -->
+        </div>
+        <!--  my markups -->
+        <!-- <div class="notice">
+          <h2>게시판</h2>
+          <ul class="board-list">
+            <li class="notice">
+              <span>공지사항</span>
+              <a href="#">더보기</a>
+              <ol class="recent-list">
+                <li><a href="#">recenttitle1</a><time></time></li>
+                <li><a href="#">recenttitle2</a><time></time></li>
+                <li><a href="#">recenttitle3</a><time></time></li>
+                <li><a href="#">recenttitle4</a><time></time></li>
+                <li><a href="#">recenttitle5</a><time></time></li>
+              </ol>
+            </li>
+            <li class="pds">
+              <span>자료실</span>
+              <a href="#">더보기</a>
+              <ol class="recent-list">
+                <li><a href="#">recenttitle1</a><time></time></li>
+                <li><a href="#">recenttitle2</a><time></time></li>
+                <li><a href="#">recenttitle3</a><time></time></li>
+                <li><a href="#">recenttitle4</a><time></time></li>
+                <li><a href="#">recenttitle5</a><time></time></li>
+              </ol>
+            </li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="group group3">
+        <div class="event-related">
+          <div class="event">
+            <h2 class="event-heading">신규 <span>이벤트</span></h2>
+            <div id="event-detail">
+              <p class="event-thumbnail"><img src="./images/free_gift.gif" alt="이벤트 경품 : 도서, 웹표준 핵심 가이드북2 HTML5+CSS3"></p>
+              <p class="event-brief"><em>웹표준 핵심 가이드북2 출시!</em>선착순 500명 한정으로 증정.</p>
+            </div>
+            <!-- <figure>
+              <h3 class="new-event-heading"></h3>
+              <img src="./images/free_gift.gif" alt="웹표준 핵심 가이드북2 표지">
+              <figcaption>웹표준 핵심 가이드북2 출시!선착순 500명 한정으로 증정.</figcaption>
+            </figure> -->
+
+            <div class="btn-event">
+              <button class="btn-event-prev" type="button">이전 이벤트 보기</button>
+              <button class="btn-event-next" type="button">다음 이벤트 보기</button>
+            </div>
+          </div>
+          <div class="related">
+            <h2 class="related-heading">관련<span>사이트</span></h2>
+            <ul class="related-list" tabindex="0">
+              <li><a href="https://www.fastcampus.co.kr" target="_blank">패스트 캠퍼스</a></li>
+              <li><a href="https://www.w3.org" target="_blank">W3C</a></li>
+              <li><a href="#" target="_blank">웹 접근성 연구소</a></li>
+              <li><a href="#" target="_blank">CSS Zen Garden</a></li>
+              <li><a href="https://cafe.naver.com" target="_blank">네이버 카페</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="favorite">
+          <h2 class="favorite-heading">인기 <span>사이트</span></h2>
+          <ol class="favorite-list">
+            <li class="no1">W3C <em>상승</em></li>
+            <li class="no2">Web Standards <em class="down">하락</em></li>
+            <li class="no3 down">CSS Zen Garden <em class="stop">유지</em></li>
+            <li class="no4">Naver Cafe <em>상승</em></li>
+          </ol>
+          <a href="#" class="favorite-more icon-more">더보기</a>
+          <!-- below my mark-up -->
+          <!-- <ol class="popular-list">
+            <li>W3C
+              <p class="rank-change">순위 상승</p>
+            </li>
+            <li>Web Standards
+              <p class="rank-change">순위 하락</p>
+            </li>
+            <li>CSS Zengarden
+              <p class="rank-change">순위 유지</p>
+            </li>
+            <li>Naver Cafe
+              <p class="rank-change">순위 상승</p>
+            </li>
+          </ol> 
+          <a href="#" class="popular-more icon-more">더보기</a>-->
+          <!-- my mark-up ends here -->
+        </div>
+      </div>
+    </main>
+    <article class="slogan">
+      <h2 class="slogan-heading" title="웹카페에서 웹표준을">슬로건</h2>
+      <p class="slogan-content">
+        <q cite="http://w3.org/WAI/">The power of the Web is in its universality, Access by everyone regardless of disability is an essential aspect.</q>Tim Berners - Lee , W3C Director and inventor of the World Wide Web
+      </p>
+      <footer class="readable-hidden">
+        출처: WAI - http://w3.org/WAI/
+      </footer>
+    </article>
+    <div class="footer-bg">
+      <!-- footer 배경적용을 위해 -->
+      <footer class="footer">
+        <a href="#" class="footer-logo"><img src="./images/footer_logo.png" alt="web cafe"></a>
+        <ul class="footer-guide">
+          <li><a href="#">회사소개</a></li>
+          <li><a href="#">개인정보 보호정책</a></li>
+          <li><a href="#">이메일주소 무단수집 거부</a></li>
+          <li><a href="#">contact us</a></li>
+          <li><a href="#">site map</a></li>
+        </ul>
+        <address class="address">
+          <span>서울시 마포구 상수동 123-12 한주빌딩 5층</span>
+          <span>전화: 02-234-5678</span>
+          <span>E-MAIL: webmaster@webcafe2010.com</span>
+        </address>
+        <div class="copyright">Copyright since &copy; 2010 by Web Cafe CORPORATION ALL RIGHTS RESERVED.</div>
+        <div class="tech-logo"><img src="./images/html5_logo.png" alt="html5 기술 사용"><img src="./images/css3_logo.png" alt="css3 기술 사용"></div>
+      </footer>
+    </div>
+  </div>
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/menu-tab.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+@charset "utf-8";
+@import url("./normalize.css");
+
+/* reset default box-sizing */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  background-color: gray;
+  height: 100vh;
+  /*emmet: h100vh*/
+}
+
+
+/*group selector*/
+
+.header,
+.visual,
+.main-content,
+.slogan,
+.footer {
+  width: 940px;
+  margin: 0 auto;
+}
+
+.header {
+  background-color: yellow;
+  height: 110px;
+}
+
+.visual {
+  background-color: pink;
+  height: 120px;
+}
+
+.main-content {
+  /* overflow: hidden; */
+  /* min-height: 400px; */
+  background-color: red;
+  padding: 30px 15px;
+}
+
+.main-content::after {
+  background-color: yellow;
+  content: "";
+  display: block;
+  clear: both;
+  /* main 아래 모든 엘리먼트가 다 float 이니까 ::after로 마지막에 가상박스를 추가한다 */
+}
+
+.slogan {
+  background-color: lime;
+  clear: both;
+  margin-top: 0px;
+}
+
+.footer {
+  background-color: skyblue;
+}
+
+.group {
+  border: 1px solid #000;
+}
+
+.group1 {
+  background-color: aqua;
+  width: 250px;
+  right: -100px;
+  float: right;
+}
+
+.group2 {
+  margin: 0 30px;
+  background-color: olive;
+  width: 380px;
+  height: 100px;
+  float: left;
+}
+
+.group3 {
+  background-color: orange;
+  width: 190px;
+  float: left;
+}

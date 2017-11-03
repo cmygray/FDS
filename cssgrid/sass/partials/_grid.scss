@@ -1,0 +1,68 @@
+$grid_width: 600px;
+$gutter: 9.6px;
+$half_gutter: $gutter / 2;
+$col_width: ($grid_width - $gutter * 3) / 4;
+
+.container {
+  @include cb;
+}
+
+.grid {
+  position: relative;
+  width: $grid_width;
+  margin: 0 auto;
+  @include cb;
+}
+
+.row {
+  background-color: gray;
+  position: relative;
+  width: 100%;
+  @include cb;
+}
+
+.col {
+  box-sizing: border-box;
+  float: left;
+  margin-left: $half_gutter;
+  margin-right: $half_gutter;
+}
+
+.alpha {
+  margin-left: 0;
+}
+
+.omega {
+  margin-right: 0;
+}
+
+.push {}
+
+.col-offset-1 {
+  margin-left: 
+}
+
+// .col-1 {
+//   width: ($grid_width - $gutter * 3) / 4;
+// }
+
+// .col-2 {
+//   width: ($grid_width - $gutter * 3 / 4) * 2 + $gutter;
+// }
+
+// .col-3 {
+//   width: ($grid_width - $gutter * 3 / 4) * 3 + $gutter * 2;
+// }
+
+// .col-4 {
+//   width: ($grid_width - $gutter * 3 / 4) * 4 + $gutter * 3;
+// }
+
+@for $i from 1 through 4 {
+  .col-#{$i} {
+    width: $col_width * $i + $gutter * ($i - 1);
+  }
+  .col-push-#{$i} {
+    right: $col_width * $i + $gutter * $i;
+  }
+}

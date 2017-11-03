@@ -1,0 +1,76 @@
+@charset "utf-8";
+@import url("./reset.css");
+@import url("./normalize.css");
+body {
+  font-family: Courier New, Courier, monospace;
+  font-size: 10px;
+}
+
+.wrapper {
+  width: 1000px;
+  min-height: 500px;
+  margin: 0 auto;
+  background: gray;
+}
+
+nav {
+  width: 100%;
+  height: 90px;
+  background: orange;
+}
+
+h2 {
+  position: absolute;
+  left: 9999px;
+}
+
+nav ul {
+  display: inline-block;
+  height: 30px;
+}
+
+
+/* 하위메뉴의 부모 li 의 block 속성 제거 */
+
+ul>li {
+  width: 100px;
+  height: 30px;
+  display: inline-block;
+}
+
+
+/* 상위메뉴 */
+
+span {
+  display: inline-block;
+  background: yellow;
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+}
+
+
+/* 하위메뉴 가로정렬 */
+
+li a {
+  display: block;
+  /* display none을 하면 블록속성이 사라지는지 레이아웃이 깨진다. */
+  /* display: none; */
+  background: green;
+  line-height: 30px;
+  /* visibility는 탭이 안먹힌다. */
+  /* visibility: hidden; */
+  opacity: 0;
+}
+
+.visible {
+  /* visibility: visible!important; */
+  opacity: 1;
+}
+
+
+/* test용 흐려지는 클래스 */
+
+.test {
+  opacity: 0.5;
+}

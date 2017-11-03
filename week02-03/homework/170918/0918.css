@@ -1,0 +1,66 @@
+@import url("./reset.css");
+
+/* 초기 설정 시작 */
+
+.wrapper {
+  padding: 10px;
+  background: red;
+  width: 500px;
+  height: 200px;
+}
+
+.tab-boards {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 12% 88%;
+  position: relative;
+  background: orange;
+}
+
+.tab-board {
+  grid-area: 1 / 1 / 3 / 3;
+  background: yellow;
+}
+
+.tab {
+  position: absolute;
+  grid-area: 1 / 1 / 2 / 2;
+  width: 33%;
+  height: 100%;
+  background: green;
+}
+
+.tab2 {
+  margin-left: 33%;
+}
+
+.tab3 {
+  margin-left: 66%;
+}
+
+.board {
+  position: absolute;
+  grid-area: 2 / 1 / 3 / 3;
+  padding: 5px;
+  background: blue;
+  /* width 기준너비가  */
+  /* width: 100%; */
+}
+
+.board-item {
+  background: navy;
+  margin: 5px 0;
+}
+
+.more {
+  position: absolute;
+  grid-area: 1 / 2 / 2 / 3;
+  width: 100%;
+  height: 100%;
+  background: purple;
+}
+
+
+/* 초기 설정 끝 */
