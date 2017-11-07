@@ -129,3 +129,13 @@ button:focus {
 .nav>li {
   cursor: pointer;
 }
+
+.list-group-item {
+  input {
+    width: 92%;
+    position: absolute;
+    top: 2px;
+    left: 40px;
+    //display: none;
+  }
+}

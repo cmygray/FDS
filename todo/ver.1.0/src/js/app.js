@@ -1,7 +1,9 @@
 import axios from './axios';
+// import axios from 'axios';
 
 (function () {
   let todos;
+  const todoList = document.querySelector('#todo-list');
 
   const countCompleted = function () {
     return todos.filter(todo => todo.completed === true).length;
@@ -17,16 +19,15 @@ import axios from './axios';
     return todos;
   };
   const render = function () {
-    const todoList = document.querySelector('#todo-list');
     todoList.innerHTML = '';
     filterTodo().forEach(todo => {
       const checked = todo.completed ? 'checked' : '';
-      todoList.innerHTML += `<li class="list-group-item">
+      todoList.innerHTML += `<li class="list-group-item edit">
 <div class="hover-anchor">
   <a class="hover-action text-muted">
     <span class="glyphicon glyphicon-remove-circle pull-right" data-id=${todo.id}></span>
   </a>
-  <label class="i-checks" for=${todo.id}>
+  <label class="i-checks" for="">
     <input type="checkbox" id=${todo.id} ${checked}><i></i>
     <span>${todo.content}</span>
   </label>
@@ -51,14 +52,23 @@ import axios from './axios';
     const todo = { id: getNewId(), content, completed: false };
     axios.post('/todos', todo)
       .then(res => {
-        todos.splice(0, 0, res);
-        render();
+        console.log(res);
+        getTodos();
       })
       .catch(err => console.log(err));
   };
   const removeTodo = function (id) {
     axios.delete(`/todos/id/${id}`)
       .then(getTodos)
+      .catch(err => console.log(err));
+  };
+  const editTodo = function (id, content) {
+    const pl = { content };
+    axios.patch(`/todos/${id}`, pl)
+      .then(res => {
+        console.log(res);
+        getTodos();
+      })
       .catch(err => console.log(err));
   };
   const checkTodo = function (id, completed) {
@@ -77,6 +87,15 @@ import axios from './axios';
       .then(getTodos)
       .catch(err => console.log(err));
   };
+  const instantEdit = function (input) {
+    const { id } = input;
+    if (input.value === '') {
+      removeTodo(id);
+    } else {
+      const content = input.value;
+      editTodo(id, content);
+    }
+  };
 
   // initial event
   window.addEventListener('load', getTodos);
@@ -89,7 +108,7 @@ import axios from './axios';
     }
   });
   // ul click event -> removeTodo() || checkTodo()
-  document.querySelector('#todo-list').addEventListener('click', e => {
+  todoList.addEventListener('click', e => {
     const { target, parent } = { target: e.target, parent: e.target.parentNode };
     // removeTodo
     if (target.nodeName === 'SPAN' && parent.nodeName !== 'LABEL') {
@@ -97,11 +116,37 @@ import axios from './axios';
       removeTodo(id);
     }
     // checkTodo
-    if (target.nodeName === 'INPUT' && parent.nodeName === 'LABEL') {
-      const id = +parent.getAttribute('for');
+    if (target.nodeName === 'I' && parent.nodeName === 'LABEL') {
+      const id = +parent.firstElementChild.id;
       const { completed } = todos.find(todo => todo.id === id);
       checkTodo(id, !completed);
     }
+  });
+  // input pop up
+  todoList.addEventListener('dblclick', e => {
+    if (e.target.nodeName === 'LABEL') {
+      const id = +e.target.firstElementChild.id;
+      e.target.insertAdjacentHTML('beforeend', `
+      <input type="text" id=${id} class="form-control input-lg edit" value="${e.target.lastElementChild.textContent}">`);
+      document.querySelector('.form-control.input-lg.edit').focus();
+    }
+    if (e.target.nodeName === 'SPAN') {
+      const id = +e.target.parentNode.firstElementChild.id;
+      e.target.parentNode.insertAdjacentHTML('beforeend', `
+      <input type="text" id=${id} class="form-control input-lg edit" value=${e.target.textContent}>`);
+      document.querySelector('.form-control.input-lg.edit').focus();
+    }
+  });
+  // editTodo
+  todoList.addEventListener('keyup', e => {
+    if (e.keyCode === 13) {
+      instantEdit(e.target);
+    }
+  });
+  // editTodo
+  todoList.addEventListener('focusout', e => {
+    console.log(e.target);
+    instantEdit(e.target);
   });
   // mark all event
   document.querySelector('#chk-allComplete').addEventListener('click', e => {
@@ -110,11 +155,7 @@ import axios from './axios';
   });
   // clear btn event
   document.querySelector('#btn-removeCompletedTodos').addEventListener('click', () => {
-    const url = 'http://localhost:4500';
-    clearTodo('/todos/completed')
-      .then(getTodos)
-      .catch(err => console.log(err));
-    // clearTodo();
+    clearTodo('/todos/completed');
   });
   // tab event
   document.querySelector('.nav-pills').addEventListener('click', e => {

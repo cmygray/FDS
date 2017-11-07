@@ -27,7 +27,7 @@ class Axios {
       req.onreadystatechange = function () {
         if (req.readyState === XMLHttpRequest.DONE) {
           if (req.status === 200) {
-            res(JSON.parse(req.response));
+            res(req.statusText);
           } else {
             rej(req.statusText);
           }
@@ -43,7 +43,7 @@ class Axios {
       req.onreadystatechange = function () {
         if (req.readyState === XMLHttpRequest.DONE) {
           if (req.status === 200) {
-            res(req.response);
+            res(req.statusText);
           } else {
             rej(req.statusText);
           }
@@ -60,7 +60,7 @@ class Axios {
       req.onreadystatechange = function () {
         if (req.readyState === XMLHttpRequest.DONE) {
           if (req.status === 200) {
-            res(req.response);
+            res(req.statusText);
           } else {
             rej(req.statusText);
           }

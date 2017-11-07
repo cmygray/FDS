@@ -3751,7 +3751,7 @@ var Axios = function () {
         req.onreadystatechange = function () {
           if (req.readyState === XMLHttpRequest.DONE) {
             if (req.status === 200) {
-              res(JSON.parse(req.response));
+              res(req.statusText);
             } else {
               rej(req.statusText);
             }
@@ -3771,7 +3771,7 @@ var Axios = function () {
         req.onreadystatechange = function () {
           if (req.readyState === XMLHttpRequest.DONE) {
             if (req.status === 200) {
-              res(req.response);
+              res(req.statusText);
             } else {
               rej(req.statusText);
             }
@@ -3792,7 +3792,7 @@ var Axios = function () {
         req.onreadystatechange = function () {
           if (req.readyState === XMLHttpRequest.DONE) {
             if (req.status === 200) {
-              res(req.response);
+              res(req.statusText);
             } else {
               rej(req.statusText);
             }
@@ -9142,8 +9142,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+// import axios from 'axios';
+
 (function () {
   var todos = void 0;
+  var todoList = document.querySelector('#todo-list');
 
   var countCompleted = function countCompleted() {
     return todos.filter(function (todo) {
@@ -9165,11 +9168,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     return todos;
   };
   var render = function render() {
-    var todoList = document.querySelector('#todo-list');
     todoList.innerHTML = '';
     filterTodo().forEach(function (todo) {
       var checked = todo.completed ? 'checked' : '';
-      todoList.innerHTML += '<li class="list-group-item">\n<div class="hover-anchor">\n  <a class="hover-action text-muted">\n    <span class="glyphicon glyphicon-remove-circle pull-right" data-id=' + todo.id + '></span>\n  </a>\n  <label class="i-checks" for=' + todo.id + '>\n    <input type="checkbox" id=' + todo.id + ' ' + checked + '><i></i>\n    <span>' + todo.content + '</span>\n  </label>\n</div>\n</li>';
+      todoList.innerHTML += '<li class="list-group-item edit">\n<div class="hover-anchor">\n  <a class="hover-action text-muted">\n    <span class="glyphicon glyphicon-remove-circle pull-right" data-id=' + todo.id + '></span>\n  </a>\n  <label class="i-checks" for="">\n    <input type="checkbox" id=' + todo.id + ' ' + checked + '><i></i>\n    <span>' + todo.content + '</span>\n  </label>\n</div>\n</li>';
     });
     document.querySelector('#completedTodos').innerHTML = '' + countCompleted();
     document.querySelector('#leftTodos').innerHTML = '' + (todos.length - countCompleted());
@@ -9190,14 +9192,23 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   var addTodo = function addTodo(content) {
     var todo = { id: getNewId(), content: content, completed: false };
     _axios2.default.post('/todos', todo).then(function (res) {
-      todos.splice(0, 0, res);
-      render();
+      console.log(res);
+      getTodos();
     }).catch(function (err) {
       return console.log(err);
     });
   };
   var removeTodo = function removeTodo(id) {
     _axios2.default.delete('/todos/id/' + id).then(getTodos).catch(function (err) {
+      return console.log(err);
+    });
+  };
+  var editTodo = function editTodo(id, content) {
+    var pl = { content: content };
+    _axios2.default.patch('/todos/' + id, pl).then(function (res) {
+      console.log(res);
+      getTodos();
+    }).catch(function (err) {
       return console.log(err);
     });
   };
@@ -9217,6 +9228,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       return console.log(err);
     });
   };
+  var instantEdit = function instantEdit(input) {
+    var id = input.id;
+
+    if (input.value === '') {
+      removeTodo(id);
+    } else {
+      var content = input.value;
+      editTodo(id, content);
+    }
+  };
 
   // initial event
   window.addEventListener('load', getTodos);
@@ -9229,7 +9250,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
   });
   // ul click event -> removeTodo() || checkTodo()
-  document.querySelector('#todo-list').addEventListener('click', function (e) {
+  todoList.addEventListener('click', function (e) {
     var _target$parent = { target: e.target, parent: e.target.parentNode },
         target = _target$parent.target,
         parent = _target$parent.parent;
@@ -9240,8 +9261,8 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       removeTodo(id);
     }
     // checkTodo
-    if (target.nodeName === 'INPUT' && parent.nodeName === 'LABEL') {
-      var _id = +parent.getAttribute('for');
+    if (target.nodeName === 'I' && parent.nodeName === 'LABEL') {
+      var _id = +parent.firstElementChild.id;
 
       var _todos$find = todos.find(function (todo) {
         return todo.id === _id;
@@ -9251,6 +9272,30 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       checkTodo(_id, !completed);
     }
   });
+  // input pop up
+  todoList.addEventListener('dblclick', function (e) {
+    if (e.target.nodeName === 'LABEL') {
+      var id = +e.target.firstElementChild.id;
+      e.target.insertAdjacentHTML('beforeend', '\n      <input type="text" id=' + id + ' class="form-control input-lg edit" value="' + e.target.lastElementChild.textContent + '">');
+      document.querySelector('.form-control.input-lg.edit').focus();
+    }
+    if (e.target.nodeName === 'SPAN') {
+      var _id2 = +e.target.parentNode.firstElementChild.id;
+      e.target.parentNode.insertAdjacentHTML('beforeend', '\n      <input type="text" id=' + _id2 + ' class="form-control input-lg edit" value=' + e.target.textContent + '>');
+      document.querySelector('.form-control.input-lg.edit').focus();
+    }
+  });
+  // editTodo
+  todoList.addEventListener('keyup', function (e) {
+    if (e.keyCode === 13) {
+      instantEdit(e.target);
+    }
+  });
+  // editTodo
+  todoList.addEventListener('focusout', function (e) {
+    console.log(e.target);
+    instantEdit(e.target);
+  });
   // mark all event
   document.querySelector('#chk-allComplete').addEventListener('click', function (e) {
     var completed = e.target.checked;
@@ -9258,11 +9303,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
   });
   // clear btn event
   document.querySelector('#btn-removeCompletedTodos').addEventListener('click', function () {
-    var url = 'http://localhost:4500';
-    clearTodo('/todos/completed').then(getTodos).catch(function (err) {
-      return console.log(err);
-    });
-    // clearTodo();
+    clearTodo('/todos/completed');
   });
   // tab event
   document.querySelector('.nav-pills').addEventListener('click', function (e) {
