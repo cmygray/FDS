@@ -1,0 +1,78 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+.material-icons {
+  cursor: pointer;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.mat-form-field {
+  width: 100%;
+  font-size: 1.2rem;
+}
+.mat-tab-label {
+  width: 50px !important;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.mat-list .mat-list-item {
+  height: 100%;
+  font-size: 1rem;
+}
+li .mat-card {
+  display: flex;
+  justify-content: space-between;
+}
+.mat-card span {
+  font-size: 1.2rem;
+  display: inline-block;
+  width: 100%;
+  height: 24px;
+}
+span .mat-checkbox {
+  margin-right: 15px;
+}
+.hover-action {
+  display: none;
+}
+.todo-item:hover .hover-action {
+  display: inline-block;
+  transition: all .3s;
+}
+.container>.mat-checkbox {
+  width: 30px;
+  margin-left: 16px;
+}
